@@ -7,6 +7,7 @@ import sys
 
 
 def search_pokemon(user_input):
+
     format_user_input = user_input.lower()
 
     try:
@@ -18,10 +19,14 @@ def search_pokemon(user_input):
         print("\n")
         print(new_dict)
         print("\n")
+
     except:
         print("\n")
         print("Sorry, that Pokemon does not exist!")
         print("\n")
 
+
+# Get the first element for the user input
 user_input = sys.argv[1]
+
 search_pokemon(user_input)
