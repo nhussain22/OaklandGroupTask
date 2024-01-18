@@ -11,31 +11,41 @@ cursor = connection.cursor()
 
 
 def search_pokemon(user_input):
+    try:
+        format_user_input = user_input.lower()
+        result = cursor.execute(f'SELECT * FROM pokemon where name="{format_user_input}"')
 
-    format_user_input = user_input.lower()
-    result = cursor.execute(f'SELECT * FROM pokemon where name="{format_user_input}"')
+        record = result.fetchall()
 
-    record = result.fetchall()
+        if record:
+            print("Printing from database!\n")
+            for item in record:
+                print("Id:",item[0])
+                print("Name:",item[1])
+                print("Height:",item[2])
+                print("Weight:",item[3])
+                print('\n')
+        else:
+            print("Doesn't exist in the database. Let me check online!\n")
+            
+            response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{format_user_input}')
+            result = (response.json())
+            new_dict = {"id":result["id"],"name":result["name"],"height":result["height"],"weight":result["weight"]}
 
-    if record:
-        for item in record:
-            print("Id:",item[0])
-            print("Name:",item[1])
-            print("Height:",item[2])
-            print("Weight:",item[3])
-    else:
-        response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{format_user_input}')
-        result = (response.json())
-        cursor.execute("INSERT INTO pokemon VALUES (?, ?, ?,?)", (result["id"], result["name"], result["height"],result["weight"]))
-        connection.commit()
+            cursor.execute("INSERT INTO pokemon VALUES (?, ?, ?,?)", (new_dict["id"], new_dict["name"], new_dict["height"],new_dict["weight"]))
+            connection.commit()
 
-        for key, value in result.items():
-            print(key.capitalize(),":", value) 
+            for key, value in new_dict.items():
+                print(key.capitalize(),":", value)
+    except:
+        print("Please input a valid argument!")
+        print('\n')
+
     
-
     cursor.close()
     connection.close()
 
 
 user_input = input("Please enter a Pokemon: ")
+print('\n')
 search_pokemon(user_input)
