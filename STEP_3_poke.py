@@ -8,10 +8,13 @@ def search_pokemon(pokemon_name):
     response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}')
 
     result = (response.json())
+    
     new_dict = {"id":result["id"],"name":result["name"],"height":result["height"],"weight":result["weight"]}
 
     print("\n")
     
+    # Use items() function to get the details inside the dict
+    # To make the output more nice - used capitalize() for the first letter
     for key, value in new_dict.items():
         print(key.capitalize(),":", value) 
     

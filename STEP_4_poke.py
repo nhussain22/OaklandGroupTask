@@ -28,5 +28,4 @@ def search_pokemon(user_input):
 
 # Get the first element for the user input
 user_input = sys.argv[1]
-
 search_pokemon(user_input)
