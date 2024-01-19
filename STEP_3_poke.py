@@ -26,4 +26,4 @@ def search_pokemon(pokemon_name):
     #print(f'The Weight: {new_dict["weight"]}')
 
 
-search_pokemon("clefairy")
+search_pokemon("pikachu")
