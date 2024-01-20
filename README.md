@@ -117,3 +117,4 @@ Please input a valid argument!
 - Understanding Try & Except: [link](https://www.w3schools.com/python/python_try_except.asp)
 - Fetching info from db: [link](https://pynative.com/python-cursor-fetchall-fetchmany-fetchone-to-read-rows-from-table/)
 - Committing to db: [link](https://stackoverflow.com/questions/45569344/how-to-tell-if-a-value-exists-in-a-sqlite3-database-python)
+- Markdown Guide: [link](https://www.markdownguide.org/cheat-sheet/)

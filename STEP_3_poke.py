@@ -16,7 +16,7 @@ def search_pokemon(pokemon_name):
     # Use items() function to get the details inside the dict
     # To make the output more nice - used capitalize() for the first letter
     for key, value in new_dict.items():
-        print(key.capitalize(),":", value) 
+        print(key.capitalize() + ": " + str(value)) 
     
     print("\n")
     
